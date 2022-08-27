@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'auth0',
+//        'passwords' => 'users',
     ],
 
     /*
@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // api側をauth0認証する
+        // auth0という名前じゃないと動かなかった。なんで？
+        'auth0' => [
+            'driver' => 'auth0',
+            'provider' => 'auth0',
+        ],
     ],
 
     /*
@@ -63,6 +69,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'auth0' => [
+            'driver' => 'auth0',
+            //'repository' => \Auth0\Laravel\Auth\User\Repository::class
+
+            // Uncomment this line for a demonstration of a custom UserRepository (app/Auth/CustomUserRepository.php)
+            'repository' => App\Auth\CustomUserRepository::class
         ],
 
         // 'users' => [

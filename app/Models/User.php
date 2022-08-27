@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements \Auth0\Laravel\Contract\Model\Stateless\User
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'auth0_id', // auth0のuuid
         'name',
         'email',
         'password',
