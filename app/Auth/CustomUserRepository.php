@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Auth;
 
+use Auth0\Laravel\Contract\Auth\User\Repository as Repository;
 use App\Models\User;
 
-class CustomUserRepository implements \Auth0\Laravel\Contract\Auth\User\Repository
+class CustomUserRepository implements Repository
 {
     /**
      * @inheritdoc
