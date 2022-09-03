@@ -26,6 +26,14 @@ Route::get('/private', function () {
     ], 200, [], JSON_PRETTY_PRINT);
 })->middleware(['auth0.authorize']);
 
+
+Route::get('/private/self-made', function () {
+    return response()->json([
+        'authorized' => true,
+        'user' => Auth::user(),
+    ], 200, [], JSON_PRETTY_PRINT);
+})->middleware(['auth.authorize']);
+
 /**
  * - auth0.authorize:scope
  *   Requires a valid bearer token with the defined scope to access the route.
