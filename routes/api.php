@@ -15,18 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 /**
  * - auth0.authorize
  *   Requires a valid bearer token to access the route.
  */
-Route::get('/api/private', function () {
+Route::get('/private', function () {
     return response()->json([
         'authorized' => true,
-        // 'user' => json_decode(json_encode((array) Auth::user(), JSON_THROW_ON_ERROR), true),
         'user' => Auth::user(),
     ], 200, [], JSON_PRETTY_PRINT);
 })->middleware(['auth0.authorize']);
@@ -35,7 +30,7 @@ Route::get('/api/private', function () {
  * - auth0.authorize:scope
  *   Requires a valid bearer token with the defined scope to access the route.
  */
-Route::get('/api/private-scoped', function () {
+Route::get('/private-scoped', function () {
     return response()->json([
         'authorized' => true,
         // 'user' => json_decode(json_encode((array) Auth::user(), JSON_THROW_ON_ERROR), true),
@@ -47,7 +42,7 @@ Route::get('/api/private-scoped', function () {
  * - auth0.authorize.optional
  *   Resolves the bearer token to a user model when provided, but will not stop requests without one.
  */
-Route::get('/api/public', function () {
+Route::get('/public', function () {
     if (Auth::check()) {
         return response()->json([
             'authorized' => true,
