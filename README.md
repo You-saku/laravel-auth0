@@ -1,5 +1,5 @@
 # laravel-auth0
-auth0を触るためのサンプル。laravelはAPIでフロントはNextjsでやる予定
+auth0を触るためのサンプル
 
 # Setup
 ```
